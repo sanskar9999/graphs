@@ -1,0 +1,38 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Define the labels and values for the radar chart
+labels = ['Linguistic', 'Logical-mathematical', 'Musical', 'Bodily-kinesthetic', 'Spatial-Visual', 'Inter-personal', 'Intra-personal', 'Naturalistic', 'Existential']
+
+# Adjust the values to be in the range of 0-100
+values = [47,73,53,67,70,63,93,50,47]
+
+# Calculate the number of angles and the angle values
+num_angles = len(labels)
+angles = np.linspace(0, 2*np.pi, num_angles, endpoint=False)
+
+# Append the first value to the end of the list to close the loop
+values.append(values[0])
+angles = np.append(angles, angles[0])
+
+# Set up the figure and the polar axis
+fig = plt.figure()
+ax = fig.add_subplot(111, polar=True)
+
+# Plot the values and fill the area with color
+ax.plot(angles, values, color='blue', linewidth=2)
+ax.fill(angles, values, color='blue', alpha=0.25)
+
+# Set the grid and the labels
+ax.set_theta_offset(np.pi / 2)
+ax.set_theta_direction(-1)
+ax.set_rlabel_position(0)
+ax.set_xticks(angles[:-1])
+ax.set_xticklabels(labels)
+ax.set_yticks([20, 40, 60, 80, 100])  # Adjust the y-axis ticks
+ax.set_yticklabels(['20', '40', '60', '80', '100'])  # Adjust the y-axis labels
+ax.grid(True)
+
+# Set the title and show the chart
+plt.title('Radar Chart of Intelligence for Person')
+plt.show()
